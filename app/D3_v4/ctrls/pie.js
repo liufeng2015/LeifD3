@@ -1,8 +1,11 @@
-D3_V4.controller("pieCtrl",["$scope",function($scope){
-    
-    //var pieContainer = d3.select(".chart_container");
-    //var svg = pieContainer.append("svg")
-    //    .attr("class","pie_svg");
+D3_V4.controller("pieCtrl",["$scope","$element",function($scope,$element){
+
+    var pieContainer = d3.select(".chart_container");
+    var svg = pieContainer.append("svg")
+            .attr("class",'.svg');
+    var width = $element.prop("offsetWidth");
+    var height = $element.prop("offsetHeight");
+
     //var dataSet = [ 30 , 10 , 43 , 55,8,23 ];
     //var pie = d3.layout.pie();
     //var radiusSet = pie(dataSet);
