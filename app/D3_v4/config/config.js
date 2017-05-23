@@ -15,5 +15,10 @@ D3_V4.config(['$stateProvider',function($stateProvider){
             template: '<div class="chart_container"></div>',
             controller:"histogramCtrl"
         })
+        .state('force',{
+            url: '/force',
+            template: '<div class="chart_container"></div>',
+            controller:"forceCtrl"
+        })
 
 }]);
