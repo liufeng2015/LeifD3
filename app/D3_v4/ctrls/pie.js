@@ -5,6 +5,24 @@ D3_V4.controller("pieCtrl",["$scope","$element",function($scope,$element){
             .attr("class",'.svg');
     var width = $element.prop("offsetWidth");
     var height = $element.prop("offsetHeight");
+    var radius = d3.min[width/2,height/2];
+
+    var color = d3.scaleOrdinal(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
+    var pie = d3.pie()
+        .sort(null)
+        .value(function(d){
+            return d.population;
+        });
+    var path = d3.arc()
+    .outerRadius(radius-10)
+    .innerRadius(0);
+
+    var label = d3.arc()
+    .outerRadius(radius - 40)
+    .innerRadius(radius - 40);
+
+
 
     //var dataSet = [ 30 , 10 , 43 , 55,8,23 ];
     //var pie = d3.layout.pie();

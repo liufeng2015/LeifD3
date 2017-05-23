@@ -10,5 +10,10 @@ D3_V4.config(['$stateProvider',function($stateProvider){
             template: '<div class="chart_container"></div>',
             controller:"pieCtrl"
         })
+        .state('histogram',{
+            url: '/histogram',
+            template: '<div class="chart_container"></div>',
+            controller:"histogramCtrl"
+        })
 
 }]);
