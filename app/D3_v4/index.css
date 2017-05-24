@@ -59,3 +59,22 @@
 .histogram rect{
     fill: purple;
 }
+.btnrect{
+    width: 25px;
+    height: 25px;
+    fill: red;
+}
+.btnrect2{
+    width: 25px;
+    height: 25px;
+    fill: blue;
+}
+.links line {
+    stroke: #aaa;
+}
+
+.nodes circle {
+    pointer-events: all;
+    stroke: none;
+    stroke-width: 40px;
+}

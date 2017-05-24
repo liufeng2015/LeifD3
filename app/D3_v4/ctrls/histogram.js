@@ -2,8 +2,9 @@ D3_V4.controller("histogramCtrl",["$scope","$element",function($scope,$element){
     var container = d3.select(".chart_container");
     var svg = container.append("svg")
         .attr("class",'svg');
-    var margin = {top: 10, right: 30, bottom: 30, left: 30};
+    var margin = {top: 35, right: 30, bottom: 30, left: 30};
     var data = d3.range(1000).map(d3.randomBates(10));/*贝茨分布,随机生成1000个0-1之间的数字*/
+    var brush = d3.brush();
     var formatCount = d3.format(",.0f");/*转换格式*/
     var g,
         width,
@@ -14,9 +15,27 @@ D3_V4.controller("histogramCtrl",["$scope","$element",function($scope,$element){
         bar;
     function refreshSVG(){
         svg.selectAll("g").remove();
+        svg.selectAll("rect").remove();
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");/*偏移*/
         width = $element.prop("offsetWidth")-margin.left-margin.right;
         height = $element.prop("offsetHeight")-margin.top-margin.bottom;
+        var flag = false;
+        svg.append("rect")
+            .attr("class","btnrect")
+            .attr("transform", "translate(" + (width-10) + "," + 6 + ")")
+            .on("click",function(){
+                flag = !flag;
+                if(flag){
+                    d3.select(this).attr("class","btnrect2");
+                    g.append("g")
+                        .attr("class", "brush")
+                        .call(brush)
+                        .call(brush.move, [[width/2, 0], [height/2, 0]]);
+                }else {
+                    d3.select(this).attr("class","btnrect");
+                    g.selectAll(".brush").remove();
+                }
+             });
         x = d3.scaleLinear()
             .rangeRound([0, width]);/*创建线性比例尺 */
         console.log(x.domain());/*都是0-1*/
